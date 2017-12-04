@@ -873,7 +873,7 @@ function parseApiCommand($request) {
 	$card = $suggestions = false;
 	write_log("Full API.AI request: " . json_encode($request), "INFO");
 	$result = $request["result"];
-	$action = $result['parameters']["action"] ?? false;
+	$action = $result["action"] ?? false;
 	$command = $result["parameters"]["command"] ?? false;
 	$control = $result["parameters"]["Controls"] ?? false;
 	$year = $request["result"]["parameters"]["age"]["amount"] ?? false;
@@ -3302,7 +3302,7 @@ function fetchAirings($days) {
 	$enableSonarr = $_SESSION['sonarrEnabled'];
 	$enableDvr = isset($_SESSION['plexDvrUri']);
 
-	switch (strtolower($days)) {
+/*	switch (strtolower($days)) {
 		case 'tomorrow':
 			$startDate = new DateTime ('tomorrow');
 			$endDate = new DateTime('tomorrow +1 day');
@@ -3334,7 +3334,11 @@ function fetchAirings($days) {
 			$startDate = new DateTime('today');
 			$endDate = new DateTime('tomorrow');
 			break;
-	}
+	} */
+        $startDate = new DateTime($days);
+        $endDate = new DateTime($days);
+        $endDate->add(new DateInterval('P1D'));
+
 	$date2 = $endDate->format('Y-m-d');
 	$date1 = $startDate->format('Y-m-d');
 	write_log("StartDate: $date1 EndDate: " . $date2);
@@ -4056,6 +4060,7 @@ function testConnection($serviceName) {
 			$sonarrPath = $_SESSION['sonarrPath'];
 			$sonarrApikey = $_SESSION['sonarrAuth'];
 			$sonarrPort = $_SESSION['sonarrPort'];
+                        write_log($sonarrURL . ":" . $sonarrPort . $sonarrPath . "/api/profile?apikey=" . $sonarrApikey);
 			if (($sonarrURL) && ($sonarrApikey) && ($sonarrPort)) {
 				$url = $sonarrURL . ":" . $sonarrPort . $sonarrPath . "/api/profile?apikey=" . $sonarrApikey;
 				$result = curlGet($url);
