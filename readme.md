@@ -1,3 +1,11 @@
+# **Work in progress**
+
+This is currently undergoing modifications in order to allow for people to set up their own dialogflow agent and the "test draft" functionality provided by Google so people don't have to publish their own individual Google Assistant apps. While I am incredibly thankful for digitalhigh for providing the current service, its stability issues frequently mean the app does not work, so this aims to remove the dependency on another 3rd party to ferry the requests from dialogflow.
+
+Once I've solidified everything, I'll be adding the exported dialogflow config and providing full setup instructions.
+
+The vast majority of credit goes to d8ahazard aka digitalhigh for the extensive work on this.
+
 # **README**
 
 ## Introduction
